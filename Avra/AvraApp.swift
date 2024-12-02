@@ -6,12 +6,26 @@
 //
 
 import SwiftUI
+import ClerkSDK
 
 @main
 struct AvraApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+  @ObservedObject private var clerk = Clerk.shared
+
+  var body: some Scene {
+    WindowGroup {
+      ZStack {
+        if clerk.loadingState == .notLoaded {
+            ProgressView(isTabBarVisible: .constant(true))
+        } else {
+            //isTabBarVisible: .constant(true)
+          ProfileView()
         }
+      }
+      .task {
+        clerk.configure(publishableKey: "pk_test_dG9wLXdyZW4tOTQuY2xlcmsuYWNjb3VudHMuZGV2JA")
+        try? await clerk.load()
+      }
     }
+  }
 }

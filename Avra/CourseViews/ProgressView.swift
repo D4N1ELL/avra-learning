@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ProgressView: View {
+    @Binding var isTabBarVisible: Bool
+    
     var body: some View {
         Text("Progress")
     }
 }
 
 #Preview {
-    ProgressView()
+    ProgressView(isTabBarVisible: .constant(true))
 }

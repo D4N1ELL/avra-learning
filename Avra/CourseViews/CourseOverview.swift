@@ -10,15 +10,21 @@ struct CourseOverview: View {
         ZStack(alignment: .topLeading) {
             VStack(spacing: 10) {
                 ScrollView {
+                    
+                    // Course Titleprivate var headerView: some View {
+                    Text("C Basics")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding(.top)
+                        
                     // Embedded YouTube Video
                     WebView(url: URL(string: "https://www.youtube.com/embed/U3aXWizDbQ4")!)
                         .frame(height: 200)
                         .cornerRadius(10)
                         .padding()
                     
-                    // Course Title
-                    Text("C Basics")
-                        .font(.title)
+                    
+                
                     
                     VStack {
                         HStack {
@@ -59,7 +65,6 @@ struct CourseOverview: View {
                     .padding()
                     
                     if selectedInfo == "modules" {
-                        
                         VStack {
                             Text("Module 1")
                                 .padding()
@@ -76,6 +81,10 @@ struct CourseOverview: View {
                                         Text("Quiz")
                                     }
                             .padding(.horizontal)
+                            
+                            NavigationLink(destination: LessonView(isTabBarVisible: $isTabBarVisible)) {
+                                    Text("Learn")
+                            }
                         }
                         .padding()
                         .background(Color.gray.opacity(0.1))
@@ -136,7 +145,7 @@ struct CourseOverview: View {
                     }
                 }
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()
+                    //if user logged in add to library, else display error user not logged in
                 }) {
                     Text("Enroll")
                         .font(.headline)
@@ -150,11 +159,11 @@ struct CourseOverview: View {
             }
             
             .onAppear {
-                        isTabBarVisible = false
-                    }
-                    .onDisappear {
-                        isTabBarVisible = true
-                    }
+                isTabBarVisible = false
+            }
+            .onDisappear {
+                isTabBarVisible = true
+            }
         }
     }
 }

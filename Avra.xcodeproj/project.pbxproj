@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CF49436B2CFA806A0079772F /* ClerkSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CF49436A2CFA806A0079772F /* ClerkSDK */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CF2A88C12CC0599600C37445 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF49436B2CFA806A0079772F /* ClerkSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +118,7 @@
 			);
 			name = Avra;
 			packageProductDependencies = (
+				CF49436A2CFA806A0079772F /* ClerkSDK */,
 			);
 			productName = Avra;
 			productReference = CF2A88B02CC0599400C37445 /* Avra.app */;
@@ -196,6 +202,9 @@
 			);
 			mainGroup = CF2A88A72CC0599400C37445;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CF4943692CFA7A500079772F /* XCRemoteSwiftPackageReference "clerk-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CF2A88B12CC0599400C37445 /* Products */;
 			projectDirPath = "";
@@ -557,6 +566,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CF4943692CFA7A500079772F /* XCRemoteSwiftPackageReference "clerk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/clerk/clerk-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.39.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF49436A2CFA806A0079772F /* ClerkSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF4943692CFA7A500079772F /* XCRemoteSwiftPackageReference "clerk-ios" */;
+			productName = ClerkSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CF2A88A82CC0599400C37445 /* Project object */;
 }

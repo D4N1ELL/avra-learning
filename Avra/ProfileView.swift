@@ -6,13 +6,27 @@
 //
 
 import SwiftUI
+import ClerkSDK
 
 struct ProfileView: View {
+   // @Binding var isTabBarVisible: Bool
+    @ObservedObject private var clerk = Clerk.shared
+    
     var body: some View {
-        Text("Profile")
+      VStack {
+        if let user = clerk.user {
+          Text("Hello, \(user.id)")
+            Button("Sign Out") {
+                Task { try? await clerk.signOut() }
+            }
+        } else {
+            SignUpOrSignInView()
+        }
+      }
     }
 }
 
+//isTabBarVisible: .constant(true)
 #Preview {
     ProfileView()
 }

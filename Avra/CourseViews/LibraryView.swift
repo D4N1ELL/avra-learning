@@ -4,9 +4,6 @@
 //
 //  Created by Daniel Istrati on 17.10.2024.
 //
-
-import SwiftUI
-
 import SwiftUI
 
 struct LibraryView: View {
@@ -61,7 +58,9 @@ struct LibraryView: View {
                     ForEach(filteredCourses) { course in
                         NavigationLink(destination: CourseOverview(isTabBarVisible: $isTabBarVisible)) {
                                 CourseRow(course: course)
-                            }
+                        }
+                        
+                        
                     }
                 }
             }
@@ -185,5 +184,5 @@ let courseData = [
 ]
 
 #Preview {
-    LibraryView(isTabBarVisible: .constant(true))
+    LibraryView(isTabBarVisible: .constant(false))
 }

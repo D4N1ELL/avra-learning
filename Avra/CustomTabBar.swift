@@ -8,7 +8,7 @@ enum Tab: String, CaseIterable {
 }
 
 struct CustomTabBar: View {
-    let BlackGround = Color(red: 42/255, green: 42/255, blue: 42/255)
+    let BlackGround = Color(.negruBack)
     
     @Binding var isTabBarVisible: Bool // Accept isTabBarVisible as a binding
 
