@@ -35,7 +35,7 @@ var currentLessonIndex = 0
 
 // Main Lesson View
 struct LessonView: View {
-    @Binding var isTabBarVisible: Bool
+    @Environment(\.presentationMode) var presentationMode
     @State private var lessons: [Lesson] = loadLessons(from: "lessons")
     @State private var currentLessonIndex = 0
     @State private var showQuiz = false
@@ -51,14 +51,6 @@ struct LessonView: View {
                             .padding(.leading)
                         Spacer()
 
-                        NavigationLink(destination: CourseOverview(isTabBarVisible: $isTabBarVisible)) {
-                            Text("Exit")
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.red)
-                                .cornerRadius(8)
-                        }
-                        .padding()
                     }
                     .padding(.top)
 
@@ -109,13 +101,21 @@ struct LessonView: View {
                         .font(.title)
                         .padding()
                     
-                    NavigationLink(destination: CourseOverview(isTabBarVisible: $isTabBarVisible)) {
-                        Text("Back to Course View")
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(8)
+                    
+                    Button("Back to Course View") {
+                        self.presentationMode.wrappedValue.dismiss()
                     }
+                    
+//                    NavigationLink(
+//                        destination: CourseOverview()
+//                    ) {
+//                        
+//                        Text("Back to Course View")
+//                            .foregroundColor(.white)
+//                            .padding()
+//                            .background(Color.blue)
+//                            .cornerRadius(8)
+//                    }
                 }
             }
         }
@@ -173,6 +173,6 @@ struct QuizView: View {
 // Preview
 struct LessonView_Previews: PreviewProvider {
     static var previews: some View {
-        LessonView(isTabBarVisible: .constant(false))
+        LessonView()
     }
 }

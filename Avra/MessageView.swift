@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MessageView: View {
-    @Binding var isTabBarVisible: Bool
     
     var body: some View {
         Text("Messages")
@@ -16,5 +15,5 @@ struct MessageView: View {
 }
 
 #Preview {
-    MessageView(isTabBarVisible: .constant(true))
+    MessageView()
 }

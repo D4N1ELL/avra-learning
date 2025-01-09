@@ -9,7 +9,6 @@ import SwiftUI
 import ClerkSDK
 
 struct ProfileView: View {
-   // @Binding var isTabBarVisible: Bool
     @ObservedObject private var clerk = Clerk.shared
     
     var body: some View {
@@ -26,7 +25,7 @@ struct ProfileView: View {
     }
 }
 
-//isTabBarVisible: .constant(true)
+
 #Preview {
     ProfileView()
 }

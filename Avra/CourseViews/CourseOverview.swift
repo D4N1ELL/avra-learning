@@ -4,27 +4,22 @@ import WebKit
 struct CourseOverview: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var selectedInfo = "modules" // Toggle between "modules" and "info"
-    @Binding var isTabBarVisible: Bool
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             VStack(spacing: 10) {
                 ScrollView {
-                    
-                    // Course Titleprivate var headerView: some View {
                     Text("C Basics")
                         .font(.largeTitle)
                         .bold()
                         .padding(.top)
-                        
+                    
                     // Embedded YouTube Video
                     WebView(url: URL(string: "https://www.youtube.com/embed/U3aXWizDbQ4")!)
                         .frame(height: 200)
                         .cornerRadius(10)
                         .padding()
                     
-                    
-                
                     
                     VStack {
                         HStack {
@@ -71,20 +66,27 @@ struct CourseOverview: View {
                                 .font(.headline)
                             Text("Basic Concepts")
                                 .font(.headline)
-                                
-                                  VStack() {
-                                        Text("Program Structure")
-                                        Text("Data Types")
-                                        Text("Taking input")
-                                        Text("Output Formatting")
-                                        Text("Variables")
-                                        Text("Quiz")
-                                    }
+                            
+                            VStack() {
+                                Text("Program Structure")
+                                Text("Data Types")
+                                Text("Taking input")
+                                Text("Output Formatting")
+                                Text("Variables")
+                                Text("Quiz")
+                            }
                             .padding(.horizontal)
                             
-                            NavigationLink(destination: LessonView(isTabBarVisible: $isTabBarVisible)) {
-                                    Text("Learn")
+                            NavigationLink(destination: LessonView()) {
+                                Text("Learn")
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
                             }
+                            
+                            
+                            
                         }
                         .padding()
                         .background(Color.gray.opacity(0.1))
@@ -97,16 +99,16 @@ struct CourseOverview: View {
                                 .font(.headline)
                             Text("Conditions and loops")
                                 .font(.headline)
+                            
+                            VStack() {
+                                Text("Statements")
                                 
-                                  VStack() {
-                                        Text("Statements")
-                                        
-                                        Text("Program Structure")
-                                        Text("Output Formatting")
-                                        Text("Variables")
-                                        Text("Data Types")
-                                        Text("Quiz")
-                                    }
+                                Text("Program Structure")
+                                Text("Output Formatting")
+                                Text("Variables")
+                                Text("Data Types")
+                                Text("Quiz")
+                            }
                             .padding(.horizontal)
                         }
                         .padding()
@@ -120,15 +122,15 @@ struct CourseOverview: View {
                                 .font(.headline)
                             Text("Arrays and strings")
                                 .font(.headline)
-                                
-                                  VStack() {
-                                        Text("Arrays")
-                                        Text("Strings")
-                                        Text("Output Formatting")
-                                        Text("Variables")
-                                        Text("Data Types")
-                                        Text("Quiz")
-                                    }
+                            
+                            VStack() {
+                                Text("Arrays")
+                                Text("Strings")
+                                Text("Output Formatting")
+                                Text("Variables")
+                                Text("Data Types")
+                                Text("Quiz")
+                            }
                             .padding(.horizontal)
                         }
                         .padding()
@@ -156,17 +158,12 @@ struct CourseOverview: View {
                         .cornerRadius(10)
                 }
                 .padding()
-            }
             
-            .onAppear {
-                isTabBarVisible = false
-            }
-            .onDisappear {
-                isTabBarVisible = true
             }
         }
     }
 }
+
 
 // WebView to embed YouTube video
 struct WebView: UIViewRepresentable {
@@ -184,6 +181,6 @@ struct WebView: UIViewRepresentable {
 
 // Preview
 #Preview {
-    CourseOverview(isTabBarVisible: .constant(true))
+    CourseOverview()
 }
 

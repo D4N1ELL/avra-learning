@@ -8,7 +8,6 @@ import SwiftUI
 
 struct LibraryView: View {
     @State private var searchText: String = ""
-    @Binding var isTabBarVisible: Bool
     
     var filteredCourses: [Course] {
         if searchText.isEmpty {
@@ -56,7 +55,7 @@ struct LibraryView: View {
                         .padding()
                 } else {
                     ForEach(filteredCourses) { course in
-                        NavigationLink(destination: CourseOverview(isTabBarVisible: $isTabBarVisible)) {
+                        NavigationLink(destination: CourseOverview()) {
                                 CourseRow(course: course)
                         }
                         
@@ -184,5 +183,5 @@ let courseData = [
 ]
 
 #Preview {
-    LibraryView(isTabBarVisible: .constant(false))
+    LibraryView()
 }

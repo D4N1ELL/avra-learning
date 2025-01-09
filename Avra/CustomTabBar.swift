@@ -11,9 +11,8 @@ struct CustomTabBar: View {
     let BlackGround = Color(.negruBack)
     
     @Binding var isTabBarVisible: Bool // Accept isTabBarVisible as a binding
-
-    
     @Binding var selectedTab: Tab
+    
     private var fillImage: String{
         selectedTab.rawValue + ".fill"
     }
@@ -41,8 +40,8 @@ struct CustomTabBar: View {
             .background(.thinMaterial)
             .cornerRadius(30)
             .padding()
-            .opacity(isTabBarVisible ? 1 : 0) // Toggle visibility based on isTabBarVisible
-            .animation(.easeInOut, value: isTabBarVisible)
+            .opacity(isTabBarVisible ? 1 : 0)
+            .animation(isTabBarVisible ? .easeInOut(duration: 0.3) : .none, value: isTabBarVisible)
         }
     }
 }

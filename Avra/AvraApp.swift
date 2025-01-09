@@ -16,9 +16,9 @@ struct AvraApp: App {
     WindowGroup {
       ZStack {
         if clerk.loadingState == .notLoaded {
-            ProgressView(isTabBarVisible: .constant(true))
+            ProgressView()
         } else {
-            //isTabBarVisible: .constant(true)
+            
           ProfileView()
         }
       }
