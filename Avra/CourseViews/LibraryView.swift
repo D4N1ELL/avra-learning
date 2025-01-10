@@ -8,6 +8,12 @@ import SwiftUI
 
 struct LibraryView: View {
     @State private var searchText: String = ""
+    @State public var courseData: [Course] = [
+        Course(name: "C basics", briefDescription: "Master the foundational concepts of C language and write your first C program.", imageName: "C-lang.png", rating: 4.5, mentorSupport: true, numberOfLessons: 10, hoursToComplete: 5, courseType: .c),
+        Course(name: "HTML basics", briefDescription: "Learn the basic structure of a webpage.", imageName: "history_image", rating: 4.7, mentorSupport: false, numberOfLessons: 15, hoursToComplete: 8, courseType: .html),
+        Course(name: "CSS basics", briefDescription: "Discover how to create CSS styles, how to set different text font sizes, font styles and colors.", imageName: "history_image", rating: 4.7, mentorSupport: false, numberOfLessons: 15, hoursToComplete: 8, courseType: .css)
+    ]
+
     
     var filteredCourses: [Course] {
         if searchText.isEmpty {
@@ -54,18 +60,28 @@ struct LibraryView: View {
                         .italic()
                         .padding()
                 } else {
-                    ForEach(filteredCourses) { course in
-                        NavigationLink(destination: CourseOverview()) {
-                                CourseRow(course: course)
+                    ForEach($courseData) { course in
+                        NavigationLink(destination: destinationView(for: course)) {
+                            CourseRow(course: course.wrappedValue)
                         }
-                        
-                        
                     }
                 }
             }
             .padding(.horizontal)
         }
     }
+    
+    @ViewBuilder
+        private func destinationView(for course: Binding<Course>) -> some View {
+            switch course.wrappedValue.courseType {
+            case .css:
+                CourseOverviewCSS(course: course)
+            case .c:
+                CourseOverviewC()
+            case .html:
+                CourseOverviewHTML(course: course)
+            }
+        }
 }
 
 // Search Bar Component
@@ -162,7 +178,7 @@ struct SearchBar: View {
 }
 
 // Course model
-struct Course: Identifiable {
+struct Course: Identifiable, Hashable {
         let id = UUID()
         let name: String
         let briefDescription: String
@@ -171,17 +187,21 @@ struct Course: Identifiable {
         let mentorSupport: Bool
         let numberOfLessons: Int
         let hoursToComplete: Int
+        let courseType: CourseType
+        enum CourseType: String {
+            case css = "CSS"
+            case c = "C"
+            case html = "HTML"
+        }
 }
 
 // Mock data
-let courseData = [
-    Course(name: "C basics", briefDescription: "Master the foundational concepts of C language and write your first C program.", imageName: "C-lang.png", rating: 4.5, mentorSupport: true, numberOfLessons: 10, hoursToComplete: 5),
-    
-    Course(name: "HTML basics", briefDescription: "Learn the basic structure of a webpage.", imageName: "history_image", rating: 4.7, mentorSupport: false, numberOfLessons: 15, hoursToComplete: 8),
-    
-    Course(name: "CSS basics", briefDescription: "Discover how to create CSS styles, how to set different text font sizes, font styles and colors.", imageName: "history_image", rating: 4.7, mentorSupport: false, numberOfLessons: 15, hoursToComplete: 8)
-]
+//let courseData = [
+//    Course(name: "C basics", briefDescription: "Master the foundational concepts of C language and write your first C program.", imageName: "C-lang.png", rating: 4.5, mentorSupport: true, numberOfLessons: 10, hoursToComplete: 5),
+//    
+//    Course(name: "HTML basics", briefDescription: "Learn the basic structure of a webpage.", imageName: "history_image", rating: 4.7, mentorSupport: false, numberOfLessons: 15, hoursToComplete: 8),
+//    
+//    Course(name: "CSS basics", briefDescription: "Discover how to create CSS styles, how to set different text font sizes, font styles and colors.", imageName: "history_image", rating: 4.7, mentorSupport: false, numberOfLessons: 15, hoursToComplete: 8)
+//]
 
-#Preview {
-    LibraryView()
-}
+

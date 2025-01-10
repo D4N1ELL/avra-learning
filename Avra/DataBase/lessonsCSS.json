@@ -1,0 +1,92 @@
+[
+    {
+        "title": "Selectors",
+        "content": "CSS selectors define the HTML elements to which styles will be applied.",
+        "quiz": {
+            "question": "Which selector targets an element with id 'header'?",
+            "options": ["#header", ".header", "header"],
+            "answer": "#header"
+        }
+    },
+    {
+        "title": "Box Model",
+        "content": "The CSS box model describes the design and layout of elements, including margins, borders, padding, and the content itself.",
+        "quiz": {
+            "question": "Which property adds space inside an element, just around the content?",
+            "options": ["margin", "padding", "border"],
+            "answer": "padding"
+        }
+    },
+    {
+        "title": "Flexbox",
+        "content": "Flexbox is a one-dimensional layout method for laying out items in rows or columns.",
+        "quiz": {
+            "question": "Which property aligns items in a Flexbox container vertically when the flex-direction is row?",
+            "options": ["align-items", "justify-content", "align-content"],
+            "answer": "align-items"
+        }
+    },
+    {
+        "title": "Positioning",
+        "content": "CSS positioning properties are used to position an element in a specific place against a reference.",
+        "quiz": {
+            "question": "Which positioning type is used to position an element relative to its normal position?",
+            "options": ["absolute", "fixed", "relative"],
+            "answer": "relative"
+        }
+    },
+    {
+        "title": "Media Queries",
+        "content": "Media queries are used in CSS to apply styles to different media types and conditions.",
+        "quiz": {
+            "question": "Which media feature is used to apply styles for screens smaller than 600px?",
+            "options": ["max-width", "min-width", "resolution"],
+            "answer": "max-width"
+        }
+    },
+    {
+        "title": "Pseudo-classes",
+        "content": "Pseudo-classes allow the definition of special states of an element.",
+        "quiz": {
+            "question": "Which pseudo-class is used to style elements when they are hovered over?",
+            "options": [":active", ":hover", ":focus"],
+            "answer": ":hover"
+        }
+    },
+    {
+        "title": "Transitions",
+        "content": "CSS transitions are used to define a change in a property's value over a duration.",
+        "quiz": {
+            "question": "Which property is necessary to define a transition's duration?",
+            "options": ["transition-duration", "transition-property", "transition-timing-function"],
+            "answer": "transition-duration"
+        }
+    },
+    {
+        "title": "Animations",
+        "content": "CSS animations make it possible to animate transitions from one CSS style configuration to another.",
+        "quiz": {
+            "question": "What is the keyframe declaration used in CSS animations?",
+            "options": ["@keyframes", "@frames", "@animation"],
+            "answer": "@keyframes"
+        }
+    },
+    {
+        "title": "Gradients",
+        "content": "CSS gradients let you display smooth transitions between two or more specified colors.",
+        "quiz": {
+            "question": "Which function is used to create a linear gradient in CSS?",
+            "options": ["gradient()", "linear-gradient()", "radial-gradient()"],
+            "answer": "linear-gradient()"
+        }
+    },
+    {
+        "title": "Responsive Design",
+        "content": "Responsive design uses CSS and HTML to make web pages look good on all devices.",
+        "quiz": {
+            "question": "Which CSS property introduces flexibility to layout design, allowing blocks to adjust to screen size?",
+            "options": ["@media", "flex", "grid"],
+            "answer": "flex"
+        }
+    }
+]

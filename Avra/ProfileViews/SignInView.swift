@@ -48,7 +48,7 @@ struct SignInView: View {
   }
     
     func signIn(email: String, password: String) {
-            let hashedPassword = hashPassword(password)
+           // let hashedPassword = hashPassword(password)
             // Logic to verify hashedPassword with the one in the database
         }
 }

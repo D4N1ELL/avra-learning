@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF3670C42D30495200FE7777 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CF3670C32D30495200FE7777 /* SQLite */; };
 		CF49436B2CFA806A0079772F /* ClerkSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CF49436A2CFA806A0079772F /* ClerkSDK */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF3670C42D30495200FE7777 /* SQLite in Frameworks */,
 				CF49436B2CFA806A0079772F /* ClerkSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,6 +121,7 @@
 			name = Avra;
 			packageProductDependencies = (
 				CF49436A2CFA806A0079772F /* ClerkSDK */,
+				CF3670C32D30495200FE7777 /* SQLite */,
 			);
 			productName = Avra;
 			productReference = CF2A88B02CC0599400C37445 /* Avra.app */;
@@ -204,6 +207,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				CF4943692CFA7A500079772F /* XCRemoteSwiftPackageReference "clerk-ios" */,
+				CF3670BD2D3047D200FE7777 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CF2A88B12CC0599400C37445 /* Products */;
@@ -570,6 +574,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CF3670BD2D3047D200FE7777 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.3;
+			};
+		};
 		CF4943692CFA7A500079772F /* XCRemoteSwiftPackageReference "clerk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/clerk/clerk-ios";
@@ -581,6 +593,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CF3670C32D30495200FE7777 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF3670BD2D3047D200FE7777 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
 		CF49436A2CFA806A0079772F /* ClerkSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF4943692CFA7A500079772F /* XCRemoteSwiftPackageReference "clerk-ios" */;

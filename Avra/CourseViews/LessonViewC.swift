@@ -163,6 +163,6 @@ struct QuizView: View {
 // Preview
 struct LessonView_Previews: PreviewProvider {
     static var previews: some View {
-        LessonView()
+        LessonViewC()
     }
 }
