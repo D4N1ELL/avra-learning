@@ -21,7 +21,7 @@ struct ContentView: View {
                     ProgressView()
                         .tag(Tab.chart)
                     
-                    MessageView()
+                    ChatsView()
                         .tag(Tab.message)
                     
                     ProfileView()

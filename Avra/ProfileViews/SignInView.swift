@@ -6,15 +6,10 @@
 //
 
 import SwiftUI
-import ClerkSDK
 
 struct SignInView: View {
   @State private var email = ""
   @State private var password = ""
-    
-    
-
-
     
   var body: some View {
     VStack {
@@ -24,7 +19,7 @@ struct SignInView: View {
             .padding(.top)
             .padding(.leading)
         
-      TextField("Email", text: $email)
+        TextField("Email", text: $email)
             .autocapitalization(.none)
             .keyboardType(.emailAddress)
             .padding(.leading, 30)
@@ -32,42 +27,36 @@ struct SignInView: View {
             .background(Color(.systemGray6))
             .cornerRadius(10)
         
-        
-      SecureField("Password", text: $password)
+        SecureField("Password", text: $password)
             .padding(.leading, 30)
             .frame(height: 40)
             .background(Color(.systemGray6))
             .cornerRadius(10)
         
-      Button("Enroll") {
-        Task { await submit(email: email, password: password) }
-      }
-      .font(.headline)
-      .foregroundColor(.white)
-      .padding()
-      .frame(maxWidth: .infinity)
-      .background(Color.blue)
-      .cornerRadius(10)
-      .padding()
+        Button("Sign In") {
+            signIn(email: email, password: password)
+        }
+          .font(.headline)
+          .foregroundColor(.white)
+          .padding()
+          .frame(maxWidth: .infinity)
+          .background(Color.blue)
+          .cornerRadius(10)
+          .padding()
     }
     .padding()
   }
+    
+    func signIn(email: String, password: String) {
+            let hashedPassword = hashPassword(password)
+            // Logic to verify hashedPassword with the one in the database
+        }
 }
 
-extension SignInView {
-
-  func submit(email: String, password: String) async {
-    do {
-      try await SignIn.create(
-        strategy: .identifier(email, password: password)
-      )
-    } catch {
-      dump(error)
-    }
-  }
-
-}
 
 #Preview {
     SignInView()
 }
+
+
+

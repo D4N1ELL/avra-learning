@@ -30,13 +30,13 @@ func loadLessons(from filename: String) -> [Lesson] {
     }
 }
 
-let lessons = loadLessons(from: "lessons")
+let lessons = loadLessons(from: "lessonsC")
 var currentLessonIndex = 0
 
 // Main Lesson View
-struct LessonView: View {
+struct LessonViewC: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var lessons: [Lesson] = loadLessons(from: "lessons")
+    @State private var lessons: [Lesson] = loadLessons(from: "lessonsC")
     @State private var currentLessonIndex = 0
     @State private var showQuiz = false
     @State private var showResult = false
@@ -106,16 +106,6 @@ struct LessonView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }
                     
-//                    NavigationLink(
-//                        destination: CourseOverview()
-//                    ) {
-//                        
-//                        Text("Back to Course View")
-//                            .foregroundColor(.white)
-//                            .padding()
-//                            .background(Color.blue)
-//                            .cornerRadius(8)
-//                    }
                 }
             }
         }

@@ -1,7 +1,7 @@
 import SwiftUI
 import WebKit
 
-struct CourseOverview: View {
+struct CourseOverviewC: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var selectedInfo = "modules" // Toggle between "modules" and "info"
     
@@ -77,16 +77,13 @@ struct CourseOverview: View {
                             }
                             .padding(.horizontal)
                             
-                            NavigationLink(destination: LessonView()) {
+                            NavigationLink(destination: LessonViewC()) {
                                 Text("Learn")
                                     .foregroundColor(.white)
                                     .padding()
                                     .background(Color.blue)
                                     .cornerRadius(8)
                             }
-                            
-                            
-                            
                         }
                         .padding()
                         .background(Color.gray.opacity(0.1))
@@ -110,6 +107,14 @@ struct CourseOverview: View {
                                 Text("Quiz")
                             }
                             .padding(.horizontal)
+                            
+                            NavigationLink(destination: LessonViewHTML()) {
+                                Text("Learn")
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                            }
                         }
                         .padding()
                         .background(Color.gray.opacity(0.1))
@@ -132,6 +137,14 @@ struct CourseOverview: View {
                                 Text("Quiz")
                             }
                             .padding(.horizontal)
+                            
+                            NavigationLink(destination: LessonViewHTML()) {
+                                Text("Learn")
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                            }
                         }
                         .padding()
                         .background(Color.gray.opacity(0.1))
@@ -146,22 +159,24 @@ struct CourseOverview: View {
                             .padding()
                     }
                 }
-                Button(action: {
-                    //if user logged in add to library, else display error user not logged in
-                }) {
-                    Text("Enroll")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
-                .padding()
+                
+                
+//                Button(course.isEnrolled ? "Unenroll" : "Enroll") {
+//                    course.isEnrolled.toggle()
+//                }
+//                .font(.headline)
+//                .foregroundColor(.white)
+//                .padding()
+//                .frame(maxWidth: .infinity)
+//                .cornerRadius(10)
+//                .background(course.isEnrolled ? Color.red : Color.blue)
+//                .padding()
             
             }
         }
     }
+    
+    
 }
 
 

@@ -6,103 +6,78 @@
 //
 
 import SwiftUI
-import ClerkSDK
+import CryptoKit
 
 struct SignUpView: View {
-  @State private var email = ""
-  @State private var password = ""
-  @State private var code = ""
-  @State private var isVerifying = false
+    @State private var email = ""
+    @State private var password = ""
+    @State private var isSignedUp = false
+    @State private var signUpError: String?  // To display any error messages
 
-  var body: some View {
-    VStack {
-        Text("Sign Up")
-            .font(.largeTitle)
-            .bold()
-            .padding(.top)
-            .padding(.leading)
+    var body: some View {
+        VStack {
+            Text("Sign Up")
+                .font(.largeTitle)
+                .bold()
+                .padding(.top)
+                .padding(.leading)
+            
+            TextField("Email", text: $email)
+                .autocapitalization(.none)
+                .keyboardType(.emailAddress)
+                .padding(.leading, 30)
+                .frame(height: 40)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+              
+              
+            SecureField("Password", text: $password)
+                .padding(.leading, 30)
+                .frame(height: 40)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+            
+            Button("Sign Up") {
+                signUp(email: email, password: password)
+            }
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.blue)
+            .cornerRadius(10)
+            .padding()
+          }
+        .padding()
+        }
         
-      if isVerifying {
-        TextField("Code", text: $code)
-              .padding(.leading, 30)
-              .frame(height: 40)
-              .background(Color(.systemGray6))
-              .cornerRadius(10)
-          
-        Button("Verify") {
-          Task { await verify(code: code) }
-        }
-        .font(.headline)
-        .foregroundColor(.white)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
-        .cornerRadius(10)
-        .padding()
-          
-      } else {
-        TextField("Email", text: $email)
-              .autocapitalization(.none)
-              .keyboardType(.emailAddress)
-              .padding(.leading, 30)
-              .frame(height: 40)
-              .background(Color(.systemGray6))
-              .cornerRadius(10)
-          
-          
-        SecureField("Password", text: $password)
-              .padding(.leading, 30)
-              .frame(height: 40)
-              .background(Color(.systemGray6))
-              .cornerRadius(10)
-          
-        Button("Continue") {
-          Task { await signUp(email: email, password: password) }
-        }
-        .font(.headline)
-        .foregroundColor(.white)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
-        .cornerRadius(10)
-        .padding()
-      }
+
+    func signUp(email: String, password: String) {
+            let hashedPassword = hashPassword(password)
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    try DatabaseManager.shared.addUser(email: email, password: hashedPassword)
+                    DispatchQueue.main.async {
+                        self.isSignedUp = true  // Indicate success on the UI
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self.signUpError = "Failed to sign up: \(error.localizedDescription)"
+                    }
+                }
+            }
     }
-    .padding()
-  }
+    
+    func hashPassword(_ password: String) -> String {
+        let hashed = SHA256.hash(data: Data(password.utf8))
+        return hashed.map { String(format: "%02x", $0) }.joined()
+    }
 }
 
-extension SignUpView {
 
-  func signUp(email: String, password: String) async {
-    do {
-      let signUp = try await SignUp.create(
-        strategy: .standard(emailAddress: email, password: password)
-      )
-
-      try await signUp.prepareVerification(strategy: .emailCode)
-
-      isVerifying = true
-    } catch {
-      dump(error)
+struct SignUpView_Previews: PreviewProvider {
+    static var previews: some View {
+        SignUpView()
     }
-  }
-
-  func verify(code: String) async {
-    do {
-      guard let signUp = Clerk.shared.client?.signUp else {
-        isVerifying = false
-        return
-      }
-
-      try await signUp.attemptVerification(.emailCode(code: code))
-    } catch {
-      dump(error)
-    }
-  }
-
 }
 
-#Preview {
-    SignUpView()
-}

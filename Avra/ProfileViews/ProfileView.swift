@@ -6,26 +6,49 @@
 //
 
 import SwiftUI
-import ClerkSDK
 
 struct ProfileView: View {
-    @ObservedObject private var clerk = Clerk.shared
-    
+    var name: String = "Daniel"  // Example user name, pass this as a variable if needed
+
     var body: some View {
-      VStack {
-        if let user = clerk.user {
-          Text("Hello, \(user.id)")
-            Button("Sign Out") {
-                Task { try? await clerk.signOut() }
+        VStack {
+            Spacer()
+
+            // Image at the top center
+            Image(systemName: "person.crop.circle.fill")
+                .resizable()
+                .frame(width: 100, height: 100)  // Set the size as per your UI design
+                .padding(.top, 50)
+
+            // Greeting text
+            Text("Hello, \(name)!")
+                .font(.largeTitle)
+                .padding(.top, 20)
+
+            Spacer()
+
+            // Log out button
+            Button(action: {
+                // Action for logging out
+                print("User logged out")
+            }) {
+                Text("Log Out")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 50)
             }
-        } else {
-            SignUpOrSignInView()
+
+            Spacer()
         }
-      }
     }
 }
 
-
-#Preview {
-    ProfileView()
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView()
+    }
 }
+
